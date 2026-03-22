@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Exo+2:wght@400;500;600;700&display=swap');
+
+.ft-root {
+  background: #0c0c0c;
+  color: #fff;
+  padding: 56px 32px 24px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-family: 'Exo 2', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── ANIMATED GLOW LINE ── */
+.ft-glow-line {
+  position: absolute;
+  top: 0; left: -50%;
+  width: 200%; height: 2px;
+  background: linear-gradient(90deg, transparent, #f5c842, transparent);
+  animation: glowSweep 4s linear infinite;
+  box-shadow: 0 0 12px rgba(245,200,66,0.6);
+}
+
+@keyframes glowSweep {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+/* Corner accent dots */
+.ft-corner {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: #f5c842;
+  border-radius: 50%;
+  top: 8px;
+  box-shadow: 0 0 10px rgba(245,200,66,0.8);
+  animation: dotBlink 2s ease-in-out infinite;
+}
+
+.ft-corner-tl { left: 20px; }
+.ft-corner-tr { right: 20px; animation-delay: 1s; }
+
+@keyframes dotBlink {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.3; transform: scale(0.6); }
+}
+
+/* ── GRID ── */
+.ft-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.2fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 560px) {
+  .ft-grid { grid-template-columns: 1fr; gap: 28px; }
+  .ft-root { padding: 40px 20px 20px; }
+}
+
+/* ── BRAND ── */
+.ft-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ft-logo-mark {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #f5c842, #e6a800);
+  color: #0c0c0c;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 4px 20px rgba(245,200,66,0.35);
+  flex-shrink: 0;
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from { box-shadow: 0 4px 20px rgba(245,200,66,0.35); }
+  to   { box-shadow: 0 4px 30px rgba(245,200,66,0.6); }
+}
+
+.ft-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.ft-logo span { color: #f5c842; }
+
+.ft-desc {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.ft-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  color: #22c55e;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+}
+
+.ft-live-dot {
+  width: 6px; height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(34,197,94,0.8);
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%,100% { box-shadow: 0 0 6px rgba(34,197,94,0.8); }
+  50%      { box-shadow: 0 0 14px rgba(34,197,94,1); }
+}
+
+/* ── HEADINGS ── */
+.ft-heading {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #f5c842;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.ft-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 28px; height: 2px;
+  background: #f5c842;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(245,200,66,0.6);
+  animation: headingGrow 0.6s ease both;
+}
+
+@keyframes headingGrow {
+  from { width: 0; }
+  to   { width: 28px; }
+}
+
+/* ── LINKS ── */
+.ft-links { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.ft-link {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.ft-link-arrow {
+  color: #333;
+  font-size: 16px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.ft-link:hover {
+  color: #f5c842;
+}
+
+.ft-link:hover .ft-link-arrow {
+  color: #f5c842;
+  transform: translateX(4px);
+}
+
+/* ── CONTACT ── */
+.ft-contact-list { display: flex; flex-direction: column; gap: 12px; }
+
+.ft-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #555;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.ft-contact-item:hover { color: #f5c842; }
+.ft-contact-item:hover .ft-contact-icon { background: rgba(245,200,66,0.15); border-color: rgba(245,200,66,0.3); }
+
+.ft-contact-icon {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  color: #888;
+}
+
+/* ── SOCIALS ── */
+.ft-socials { display: flex; gap: 10px; margin-bottom: 16px; }
+
+.ft-social-btn {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.ft-social-btn:hover {
+  background: #f5c842;
+  border-color: #f5c842;
+  color: #0c0c0c;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 18px rgba(245,200,66,0.35);
+}
+
+/* WhatsApp */
+.ft-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(22,163,74,0.1);
+  border: 1px solid rgba(22,163,74,0.25);
+  color: #4ade80;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.25s;
+}
+
+.ft-whatsapp:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(22,163,74,0.35);
+}
+
+/* ── BOTTOM ── */
+.ft-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.ft-bottom-dots { display: flex; gap: 6px; align-items: center; }
+
+.ft-bd {
+  width: 5px; height: 5px;
+  background: #f5c842;
+  border-radius: 50%;
+  display: inline-block;
+  animation: dotBlink 1.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(245,200,66,0.6);
+}

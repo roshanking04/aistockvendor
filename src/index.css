@@ -1,13 +1,63 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* This allows the CSS to animate the custom variable --angle */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.save-btn {
+  /* Simple background with the conic gradient */
+  background: repeating-conic-gradient(from var(--angle), #667eea, #764ba2, #667eea 10%) !important;
+  color: rgb(218, 62, 62) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px 25px !important;
+  font-weight: bold !important;
+  text-transform: none !important;
+  cursor: pointer;
+  
+  /* The Animation */
+  animation: rotateGradient 4s linear infinite;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+}
+
+.save-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+@keyframes rotateGradient {
+  to {
+    --angle: 360deg;
+  }
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-only, .print-only * {
+    visibility: visible;
+  }
+  .print-only {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

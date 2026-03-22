@@ -1,0 +1,176 @@
+/* ── SCREEN: hidden ── */
+#print-bill-area {
+  display: none;
+}
+
+/* ── PRINT: show only the bill ── */
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm 12mm;
+  }
+
+  /* Hide everything on page */
+  html, body {
+    visibility: hidden;
+  }
+
+  /* Show only bill area */
+  #print-bill-area,
+  #print-bill-area * {
+    visibility: visible !important;
+  }
+
+  #print-bill-area {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+    z-index: 99999 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* ── BILL STYLES (apply in both screen preview and print) ── */
+.pb-root {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #000;
+  background: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pb-header { text-align: center; margin-bottom: 12px; }
+
+.pb-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.pb-logo-box {
+  width: 40px; height: 40px;
+  background: #f5c842;
+  color: #000;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.pb-logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.pb-logo span { color: #e6a800; }
+
+.pb-tagline { font-size: 10px; color: #666; text-align: left; }
+
+.pb-contact { font-size: 10px; color: #555; margin-top: 6px; }
+
+.pb-line {
+  border: none;
+  border-top: 1px dashed #999;
+  margin: 10px 0;
+}
+
+.pb-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.pb-meta-block { text-align: center; }
+
+.pb-meta-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+}
+
+.pb-meta-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #000;
+}
+
+.pb-section-title {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.pb-customer { margin: 8px 0; }
+.pb-cust-name  { font-size: 13px; font-weight: 700; color: #000; }
+.pb-cust-phone { font-size: 11px; color: #555; margin-top: 2px; }
+
+/* Table */
+.pb-table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+
+.pb-thead-row {
+  background: #f5c842;
+}
+
+.pb-th {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 4px;
+  color: #000;
+}
+
+.pb-td {
+  padding: 5px 4px;
+  font-size: 12px;
+  vertical-align: top;
+  color: #000;
+}
+
+.pb-row.even { background: #f9f9f9; }
+
+/* Totals */
+.pb-totals { margin: 8px 0; }
+
+.pb-total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 12px;
+  color: #333;
+}
+
+.pb-discount { color: #22c55e; }
+
+.pb-grand {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0 4px;
+  font-size: 16px;
+  font-weight: 900;
+  color: #000;
+  border-top: 2px solid #000;
+  margin-top: 6px;
+}
+
+/* Footer */
+.pb-footer { text-align: center; margin-top: 10px; }
+
+.pb-thanks { font-size: 13px; font-weight: 700; color: #000; }
+
+.pb-policy { font-size: 10px; color: #888; margin-top: 3px; }
