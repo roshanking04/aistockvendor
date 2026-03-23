@@ -326,3 +326,57 @@
 .db-qs-label { font-size: 13px; font-weight: 700; color: var(--ink); }
 .db-qs-sub   { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
 .db-qs-value { font-size: 14px; font-weight: 900; color: var(--gold-2); white-space: nowrap; }
+
+
+/* ════════════════════════════
+   MOBILE RESPONSIVE — Dashboard
+════════════════════════════ */
+@media (max-width: 768px) {
+  .db-root { gap: 16px; }
+
+  .db-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .db-title { font-size: 22px; }
+  .db-sub   { font-size: 12px; }
+
+  .db-range-tabs { width: 100%; }
+  .db-range-btn  { flex: 1; padding: 8px 10px; font-size: 11px; }
+
+  .db-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .db-stat-card  { padding: 14px 14px 10px; }
+  .db-stat-value { font-size: 18px; }
+  .db-stat-label { font-size: 10px; }
+  .db-stat-icon  { font-size: 16px; }
+
+  .db-chart-card { padding: 16px; }
+  .db-chart-title { font-size: 14px; }
+
+  .db-chart-tabs  { width: 100%; }
+  .db-chart-tab   { flex: 1; text-align: center; padding: 7px 8px; font-size: 11px; }
+
+  .db-chart-legend {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .db-legend-stat { margin-left: 0; }
+
+  .db-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .db-candle-legend { flex-wrap: wrap; gap: 8px; }
+  .db-candle-info   { margin-left: 0; }
+}
+
+@media (max-width: 400px) {
+  .db-stats-grid { grid-template-columns: 1fr; }
+}
