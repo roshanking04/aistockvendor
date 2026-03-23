@@ -816,3 +816,56 @@
 .bl-pb-csv:hover   { background: #dcfce7; border-color: #22c55e; color: #166534; }
 .bl-pb-close:hover { background: #fee2e2; border-color: #ef4444; color: #dc2626; }
 .bl-preview-body   { padding: 24px; max-height: 520px; overflow-y: auto; background: #fafafa; }
+
+
+/* ════════════════════════════
+   MOBILE RESPONSIVE — Billing
+════════════════════════════ */
+@media (max-width: 768px) {
+  .bl-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bl-search-outer { width: 100%; }
+  .bl-search-wrap  { width: 100%; }
+  .bl-search       { width: 100%; }
+
+  .bl-cat-wrap { flex-shrink: 0; }
+  .bl-cat-btn  { min-width: 130px; font-size: 12px; padding: 9px 10px; }
+  .bl-cat-dropdown { min-width: 200px; right: 0; left: auto; }
+
+  .bl-topbar-right { width: 100%; justify-content: space-between; }
+
+  .bl-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .bl-card-img-wrap,
+  .bl-img-wrap { aspect-ratio: 1/1; }
+
+  .bl-name  { font-size: 12px; -webkit-line-clamp: 1; }
+  .bl-price { font-size: 13px; }
+
+  .bl-qty-btn { width: 28px; height: 28px; font-size: 14px; }
+  .bl-qty-num { font-size: 14px; min-width: 22px; }
+
+  .bl-floating-cart {
+    bottom: 20px; right: 16px;
+    width: 56px; height: 56px;
+    font-size: 22px;
+  }
+
+  /* Filter chips */
+  .bl-filter-chips { flex-wrap: wrap; }
+  .bl-chip { font-size: 11px; }
+
+  /* Preview panel */
+  .bl-preview-body { max-height: 380px; padding: 14px; }
+  .bl-preview-bar  { flex-wrap: wrap; gap: 8px; }
+}
+
+@media (max-width: 400px) {
+  .bl-grid { grid-template-columns: 1fr !important; }
+}
