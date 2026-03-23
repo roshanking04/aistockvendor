@@ -1,46 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&display=swap');
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  background: #f8f7f4;
-  overflow-x: hidden;
-}
-
 .layout-root {
   display: flex;
   min-height: 100vh;
+  background: #f0f2ff;
 }
 
-/* Sidebar is fixed at 220px, so body shifts right */
 .layout-body {
-  margin-left: 220px;
   flex: 1;
+  margin-left: 220px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background: #f8f7f4;
+  min-width: 0;
 }
 
 .layout-main {
   flex: 1;
-  padding: 32px 36px;
+  padding: 24px;
+  overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
-
-/* Print */
-@media print {
-  .layout-body > *:not(.layout-main) { display: none !important; }
-  .layout-main > *:not(.print-only)  { display: none !important; }
-  .print-only { display: block !important; visibility: visible !important; }
-}
-
+/* ── MOBILE ── */
 @media (max-width: 768px) {
-  .layout-body  { margin-left: 0; }
-  .layout-main  { padding: 20px 16px; }
+  .layout-body {
+    margin-left: 0;
+  }
+
+  .layout-main {
+    padding: 16px;
+    padding-top: 70px; /* space for hamburger button */
+  }
 }
