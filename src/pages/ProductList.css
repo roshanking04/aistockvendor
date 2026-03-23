@@ -900,3 +900,57 @@
   color: #ef4444;
   background: #fff0f0;
 }
+@media (max-width: 768px) {
+  .pl-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    position: static;
+    margin-top: 0;
+  }
+
+  .pl-page-title { font-size: 22px; }
+
+  .pl-topbar-right {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pl-search-wrap { flex: 1; min-width: 0; }
+  .pl-search      { width: 100%; }
+
+  .pl-view-toggle { flex-shrink: 0; }
+  .pl-add-btn     { flex: 1; justify-content: center; }
+
+  .pl-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .pl-card-img-wrap { height: 140px; }
+  .pl-card-body     { padding: 12px; }
+  .pl-card-name     { font-size: 13px; }
+  .pl-card-price    { font-size: 12px; }
+  .pl-card-desc     { display: none; }
+
+  /* List view mobile */
+  .pl-list-header { display: none; }
+  .pl-list-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+  .pl-list-stock { display: none; }
+
+  /* Category dropdown */
+  .pl-cat-btn   { min-width: 120px; font-size: 12px; padding: 9px 10px; }
+  .pl-cat-dropdown { min-width: 180px; }
+
+  /* Filter chips */
+  .pl-filter-chips { flex-wrap: wrap; gap: 6px; }
+  .pl-chip         { font-size: 11px; padding: 4px 8px 4px 10px; }
+}
+
+@media (max-width: 400px) {
+  .pl-grid { grid-template-columns: 1fr; }
+}
