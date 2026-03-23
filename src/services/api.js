@@ -1,4 +1,4 @@
-const API = "http://localhost:3869";
+const API =process.env.REACT_APP_API_URL || "http://localhost:3869";
 
 // Get token from localStorage
 const getToken = () => localStorage.getItem("token") || "";
