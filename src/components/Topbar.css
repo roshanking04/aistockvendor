@@ -291,4 +291,24 @@
   .tb-clock     { display: none; }
   .tb-user-info { display: none; }
   .tb-sub       { display: none; }
+}@media (max-width: 768px) {
+  .tb-root {
+    padding: 12px 14px 12px 64px; /* left space for hamburger */
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .tb-title   { font-size: 16px; }
+  .tb-sub     { display: none; }
+  .tb-breadcrumb { display: none; }
+
+  .tb-clock      { display: none; }
+  .tb-divider    { display: none; }
+
+  .tb-user-info  { display: none; }
+  .tb-status-wrap { display: none; }
+
+  .tb-right { gap: 8px; }
+
+  .tb-icon-btn { width: 34px; height: 34px; }
 }
