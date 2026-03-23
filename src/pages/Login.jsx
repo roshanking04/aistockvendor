@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
+const API = process.env.REACT_APP_API || "http://localhost:3869";
+
 export default function Login() {
   const navigate = useNavigate();
   const [mode, setMode]         = useState("login");
@@ -26,7 +28,7 @@ export default function Login() {
     if (!username.trim() || !password.trim()) { setError("Please enter username and password"); return; }
     setLoading(true); setError("");
     try {
-      const res  = await fetch("http://localhost:3869/api/auth/login", {
+      const res  = await fetch(`${API}/api/auth/login`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
@@ -37,7 +39,7 @@ export default function Login() {
       localStorage.setItem("role",     data.role     || "ADMIN");
       localStorage.setItem("fullName", data.fullName || username);
       navigate("/dashboard", { replace: true });
-    } catch { setError("Cannot connect to backend on port 3869"); setLoading(false); }
+    } catch { setError("Cannot connect to server"); setLoading(false); }
   };
 
   const handleRegister = async (e) => {
@@ -47,7 +49,7 @@ export default function Login() {
     if (regPass.length < 6)              { setError("Min 6 characters"); return; }
     setLoading(true); setError(""); setSuccess("");
     try {
-      const res  = await fetch("http://localhost:3869/api/auth/register", {
+      const res  = await fetch(`${API}/api/auth/register`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName: regName, username: regUser, password: regPass, role: regRole }),
       });
@@ -56,15 +58,13 @@ export default function Login() {
       setSuccess("Account created!");
       setLoading(false);
       setTimeout(() => { setMode("login"); setSuccess(""); }, 2000);
-    } catch { setError("Cannot connect to backend"); setLoading(false); }
+    } catch { setError("Cannot connect to server"); setLoading(false); }
   };
 
   const switchMode = (m) => { setMode(m); setError(""); setSuccess(""); };
 
   return (
     <div className="lg-root">
-
-      {/* ── BACKGROUND ── */}
       <div className="lg-bg">
         <div className="lg-grid" />
         <div className="lg-orb lg-orb-1" />
@@ -72,18 +72,13 @@ export default function Login() {
         <div className="lg-orb lg-orb-3" />
       </div>
       <div className="lg-scanline" />
-
-      {/* Corner neon lines */}
       <div className="lg-corner lg-corner-tl" />
       <div className="lg-corner lg-corner-bl" />
       <div className="lg-corner lg-corner-tr" />
       <div className="lg-corner lg-corner-br" />
 
-      {/* ── CARD ── */}
       <div className="lg-card">
         <div className="lg-card-glow" />
-
-        {/* Title */}
         <div className="lg-title-wrap">
           <div className="lg-icon-wrap">V</div>
           <div className="lg-title">
@@ -93,26 +88,20 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="lg-tabs">
           <button className={`lg-tab${mode === "login" ? " active" : ""}`} onClick={() => switchMode("login")}>Sign In</button>
           <button className={`lg-tab${mode === "register" ? " active" : ""}`} onClick={() => switchMode("register")}>Register</button>
           <div className={`lg-tab-slide${mode === "register" ? " right" : ""}`} />
         </div>
 
-        {/* ── LOGIN ── */}
         {mode === "login" && (
           <div className="lg-pane">
-            <div className="lg-hint">
-              💡 Default: <strong>admin</strong> / <strong>admin123</strong>
-            </div>
+            <div className="lg-hint">💡 Default: <strong>admin</strong> / <strong>admin123</strong></div>
             <form onSubmit={handleLogin} className="lg-form">
               <Field label="Username" icon="◉">
                 <input className="lg-inp" type="text" placeholder="Enter username"
-                  value={username} autoFocus
-                  onChange={e => { setUsername(e.target.value); setError(""); }} />
+                  value={username} autoFocus onChange={e => { setUsername(e.target.value); setError(""); }} />
               </Field>
-
               <Field label="Password" icon="◈">
                 <input className="lg-inp" type={showPass ? "text" : "password"}
                   placeholder="Enter password" value={password}
@@ -121,12 +110,9 @@ export default function Login() {
                   {showPass ? "🙈" : "👁️"}
                 </button>
               </Field>
-
               {error   && <div className="lg-notice lg-notice-error">⚠ {error}</div>}
               {success && <div className="lg-notice lg-notice-success">✓ {success}</div>}
-
               <SubmitBtn loading={loading} label="SIGN IN" />
-
               <div className="lg-bottom-row">
                 <button type="button" className="lg-forgot">Forgot Password?</button>
                 <span className="lg-switch-text">
@@ -137,7 +123,6 @@ export default function Login() {
           </div>
         )}
 
-        {/* ── REGISTER ── */}
         {mode === "register" && (
           <div className="lg-pane">
             <form onSubmit={handleRegister} className="lg-form">
@@ -145,12 +130,10 @@ export default function Login() {
                 <input className="lg-inp" type="text" placeholder="Store Manager"
                   value={regName} autoFocus onChange={e => { setRegName(e.target.value); setError(""); }} />
               </Field>
-
               <Field label="Username" icon="◉">
                 <input className="lg-inp" type="text" placeholder="Choose username"
                   value={regUser} onChange={e => { setRegUser(e.target.value); setError(""); }} />
               </Field>
-
               <Field label="Role" icon="▣">
                 <select className="lg-inp lg-sel" value={regRole} onChange={e => setRegRole(e.target.value)}>
                   <option value="ADMIN">Admin</option>
@@ -159,7 +142,6 @@ export default function Login() {
                   <option value="CASHIER">Cashier</option>
                 </select>
               </Field>
-
               <div className="lg-two-col">
                 <Field label="Password" icon="◈">
                   <input className="lg-inp" type={showPass ? "text" : "password"}
@@ -172,17 +154,13 @@ export default function Login() {
                     onChange={e => { setRegConfirm(e.target.value); setError(""); }} />
                 </Field>
               </div>
-
               <label className="lg-check-row">
                 <input type="checkbox" checked={showPass} onChange={() => setShowPass(!showPass)} />
                 Show passwords
               </label>
-
               {error   && <div className="lg-notice lg-notice-error">⚠ {error}</div>}
               {success && <div className="lg-notice lg-notice-success">✓ {success}</div>}
-
               <SubmitBtn loading={loading} label="CREATE ACCOUNT" />
-
               <div className="lg-bottom-row">
                 <span />
                 <span className="lg-switch-text">
@@ -192,7 +170,6 @@ export default function Login() {
             </form>
           </div>
         )}
-
         <div className="lg-card-footer">InvoStore · vendor.io · {new Date().getFullYear()}</div>
       </div>
     </div>
