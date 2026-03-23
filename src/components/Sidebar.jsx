@@ -1,77 +1,73 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 
 const NAV = [
-  { label: "Dashboard",   path: "/dashboard", icon: "◈" },
-  { label: "Products",    path: "/products",  icon: "◉" },
-  { label: "Billing",     path: "/billing",   icon: "◎" },
-  { label: "Add Product", path: "/add",       icon: "⊕" },
+  { to: "/dashboard",  label: "Dashboard",   icon: "◈" },
+  { to: "/products",   label: "Products",    icon: "◉" },
+  { to: "/billing",    label: "Billing",     icon: "⊕" },
+  { to: "/add",        label: "Add Product", icon: "✦" },
 ];
 
 export default function Sidebar() {
-  const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const fullName = localStorage.getItem("fullName") || "Admin";
+  const role     = localStorage.getItem("role")     || "ADMIN";
+  const initials = fullName.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
 
-  useEffect(() => { setTimeout(() => setMounted(true), 50); }, []);
-
-  const user = {
-    fullName: localStorage.getItem("fullName") || "Admin",
-    role:     localStorage.getItem("role")     || "ADMIN",
-  };
-
-  const initials = user.fullName
-    .split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
+  // Close sidebar on route change (mobile)
+  useEffect(() => { setOpen(false); }, [location.pathname]);
 
   return (
-    <aside className={`sb-root${mounted ? " sb-mounted" : ""}`}>
+    <>
+      {/* Hamburger button — mobile only */}
+      <button className="sb-hamburger" onClick={() => setOpen(!open)} aria-label="Menu">
+        <span /><span /><span />
+      </button>
 
-      {/* Subtle background glow */}
-      <div className="sb-glow-top" />
-      <div className="sb-glow-bottom" />
+      {/* Overlay — mobile only */}
+      <div className={`sb-overlay${open ? " open" : ""}`} onClick={() => setOpen(false)} />
 
-      {/* ── LOGO ── */}
-      <div className="sb-logo">
-        <div className="sb-logo-mark">
-          <span>AI</span>
-          <div className="sb-logo-ring" />
+      {/* Sidebar */}
+      <nav className={`sb-root${open ? " mobile-open" : ""}`}>
+        {/* Logo */}
+        <div className="sb-logo-wrap">
+          <div className="sb-logo-ring">AI</div>
+          <div className="sb-logo-text">STOCK<span>VENDOR</span></div>
         </div>
-        <span className="sb-logo-text">STOCK<em>VENDOR</em></span>
-      </div>
 
-      {/* ── NAV ── */}
-      <nav className="sb-nav">
-        {NAV.map(({ label, path, icon }, i) => (
-          <NavLink
-            key={path}
-            to={path}
-            className={({ isActive }) => `sb-item${isActive ? " active" : ""}`}
-            style={{ animationDelay: `${0.05 + i * 0.07}s` }}
-          >
-            {/* Active background shimmer */}
-            <span className="sb-item-shine" />
-
-            <span className="sb-icon">{icon}</span>
-            <span className="sb-label">{label}</span>
-            <span className="sb-arrow">›</span>
-          </NavLink>
-        ))}
-      </nav>
-
-      {/* ── FOOTER ── */}
-      <div className="sb-footer">
-        <div className="sb-avatar">
-          <span>{initials}</span>
-          <div className="sb-avatar-ring" />
+        {/* Nav links */}
+        <div className="sb-nav">
+          {NAV.map(item => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) => `sb-nav-item${isActive ? " active" : ""}`}
+            >
+              <span className="sb-nav-icon">{item.icon}</span>
+              <span className="sb-nav-label">{item.label}</span>
+              <span className="sb-nav-arrow">›</span>
+            </NavLink>
+          ))}
         </div>
+
+        {/* User */}
         <div className="sb-user">
-          <div className="sb-user-name">{user.fullName}</div>
-          <div className="sb-user-role">{user.role}</div>
+          <div className="sb-avatar">
+            <span>{initials}</span>
+            <div className="sb-avatar-ring" />
+          </div>
+          <div className="sb-user-info">
+            <div className="sb-user-name">{fullName}</div>
+            <div className="sb-user-role">{role}</div>
+          </div>
+          <div className="sb-status-wrap">
+            <div className="sb-status-dot" />
+            <div className="sb-status-ping" />
+          </div>
         </div>
-        <div className="sb-status" title="Online">
-          <div className="sb-status-ping" />
-        </div>
-      </div>
-
-    </aside>
+      </nav>
+    </>
   );
 }
