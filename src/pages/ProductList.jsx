@@ -257,16 +257,15 @@ export default function ProductList() {
               >
                 <div className="pl-card-img-wrap">
                   <div className="pl-card-img-top-bar" />
-             <img 
-  src={product.image ? `${API}/uploads/${product.image.replace(/^\//, '')}` : "https://placehold.co/400x260?text=No+Image"} 
-  alt={product.name} 
+<img 
+  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/400x260?text=No+Image"} 
+  alt={product.name}
   className="pl-card-img"
   onError={(e) => { 
     e.target.onerror = null; 
     e.target.src = "https://placehold.co/400x260?text=File+Not+Found"; 
   }} 
-/>
-                  <div className="pl-card-img-shine" />
+/>      <div className="pl-card-img-shine" />
                   {product.stockQuantity <= 5 && (
                     <div className="pl-low-stock-badge">⚠️ Low Stock</div>
                   )}
