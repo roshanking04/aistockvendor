@@ -336,5 +336,3 @@ export default function ProductList() {
     </div>
   );
 }
-
-where i need change explain correct ley
