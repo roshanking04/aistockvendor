@@ -10,7 +10,7 @@ import AddIcon           from "@mui/icons-material/Add";
 import { getAllProducts, deleteProduct as deleteAPI } from "../services/api";
 import "./ProductList.css";
 
-const API = "http://localhost:8080";
+const API = "https://aistockvendor-backend-production.up.railway.app";
 
 // ── Define your categories here — add/edit as needed ──
 const CATEGORIES = [
