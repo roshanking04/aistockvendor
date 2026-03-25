@@ -357,8 +357,17 @@ export default function Billing() {
                 <div className="bl-img-wrap">
                   <div className="bl-img-top-bar" />
                   <div className="bl-img-shine" />
-                  <img src={`${API}/uploads/${product.image}`} alt={product.name}
-                    onError={e => { e.target.src = "https://placehold.co/300x200/f5f5f5/ccc?text=No+Image"; }} />
+                  <img
+                    src={product.image
+                      ? `${API}/uploads/${product.image}`
+                      : `https://ui-avatars.com/api/?name=${encodeURIComponent(product.name)}&size=300&background=f5c842&color=0f0f0f&bold=true`
+                    }
+                    alt={product.name}
+                    onError={e => {
+                      e.target.onerror = null;
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(product.name)}&size=300&background=f0f0f0&color=888&bold=true`;
+                    }}
+                  />
                   {qty > 0 && <div className="bl-in-cart-badge">{qty} in cart</div>}
                   {product.category && (
                     <div className="bl-cat-badge">
