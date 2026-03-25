@@ -317,8 +317,12 @@ export default function ProductList() {
                 transition={{ delay: i * 0.04 }}
               >
                 <div className="pl-list-product">
-                  <img src={`${API}/uploads/${product.image}`} alt="" className="pl-list-img"
-                    onError={e => { e.target.src = "https://placehold.co/60x60/f5f5f5/ccc?text=?"; }} />
+                  <img 
+  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/60x60?text=?"} 
+  alt="" 
+  className="pl-list-img"
+  onError={e => { e.target.src = "https://placehold.co/60x60?text=?"; }} 
+/>
                   <span className="pl-list-name">{product.name}</span>
                 </div>
                 <span className="pl-list-price">₹{product.price}</span>
