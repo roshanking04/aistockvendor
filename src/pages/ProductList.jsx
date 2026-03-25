@@ -9,8 +9,7 @@ import ViewListIcon      from "@mui/icons-material/ViewList";
 import AddIcon           from "@mui/icons-material/Add";
 import { getAllProducts, deleteProduct as deleteAPI } from "../services/api";
 import "./ProductList.css";
-
-const API = "http://localhost:3869";
+const API = "https://aistockvendor-backend-production.up.railway.app";
 
 // ── Define your categories here — add/edit as needed ──
 const CATEGORIES = [
@@ -257,15 +256,12 @@ export default function ProductList() {
               >
                 <div className="pl-card-img-wrap">
                   <div className="pl-card-img-top-bar" />
-                 <img 
-  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/400x260?text=No+Image"} 
-  alt={product.name}
-  className="pl-card-img"
-  onError={(e) => { 
-    e.target.onerror = null; 
-    e.target.src = "https://placehold.co/400x260?text=File+Not+Found"; 
-  }} 
-/>  
+                  <img
+                    src={`${API}/uploads/${product.image}`}
+                    alt={product.name}
+                    className="pl-card-img"
+                    onError={e => { e.target.src = "https://placehold.co/400x260/f5f5f5/ccc?text=No+Image"; }}
+                  />
                   <div className="pl-card-img-shine" />
                   {product.stockQuantity <= 5 && (
                     <div className="pl-low-stock-badge">⚠️ Low Stock</div>
@@ -317,17 +313,10 @@ export default function ProductList() {
                 transition={{ delay: i * 0.04 }}
               >
                 <div className="pl-list-product">
-  <img 
-    src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/60x60?text=?"} 
-    alt="" 
-    className="pl-list-img"
-    onError={e => { 
-      e.target.onerror = null; 
-      e.target.src = "https://placehold.co/60x60?text=NotFound"; 
-    }} 
-  />
-  <span className="pl-list-name">{product.name}</span>
-</div>
+                  <img src={`${API}/uploads/${product.image}`} alt="" className="pl-list-img"
+                    onError={e => { e.target.src = "https://placehold.co/60x60/f5f5f5/ccc?text=?"; }} />
+                  <span className="pl-list-name">{product.name}</span>
+                </div>
                 <span className="pl-list-price">₹{product.price}</span>
                 <span className={`pl-list-stock${product.stockQuantity <= 5 ? " low" : ""}`}>
                   {product.stockQuantity}
