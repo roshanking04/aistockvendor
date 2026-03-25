@@ -257,13 +257,13 @@ export default function ProductList() {
               >
                 <div className="pl-card-img-wrap">
                   <div className="pl-card-img-top-bar" />
-                <img 
-  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/60x60/f5f5f5/ccc?text=?"} 
-  alt="" 
-  className="pl-list-img"
+              <img 
+  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/400x260?text=No+Image"} 
+  alt={product.name} 
+  className="pl-card-img"
   onError={(e) => { 
-    e.target.onerror = null;
-    e.target.src = "https://placehold.co/60x60/f5f5f5/ccc?text=?"; 
+    e.target.onerror = null; // Prevents infinite loop
+    e.target.src = "https://placehold.co/400x260?text=File+Not+Found"; 
   }} 
 />
                   <div className="pl-card-img-shine" />
