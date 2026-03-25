@@ -258,7 +258,7 @@ export default function ProductList() {
                 <div className="pl-card-img-wrap">
                   <div className="pl-card-img-top-bar" />
 <img 
-  src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/400x260?text=No+Image"} 
+ src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/60x60?text=No+Image"} 
   alt={product.name}
   className="pl-card-img"
   onError={(e) => { 
