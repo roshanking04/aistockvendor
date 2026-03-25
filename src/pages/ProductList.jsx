@@ -257,7 +257,7 @@ export default function ProductList() {
               >
                 <div className="pl-card-img-wrap">
                   <div className="pl-card-img-top-bar" />
-                 <img 
+                <img 
   src={product.image ? `${API}/uploads/${product.image}` : "https://placehold.co/60x60/f5f5f5/ccc?text=?"} 
   alt="" 
   className="pl-list-img"
