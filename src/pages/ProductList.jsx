@@ -10,7 +10,7 @@ import AddIcon           from "@mui/icons-material/Add";
 import { getAllProducts, deleteProduct as deleteAPI } from "../services/api";
 import "./ProductList.css";
 
-const API = "http://localhost:3869";
+const API = "http://localhost:8080";
 
 // ── Define your categories here — add/edit as needed ──
 const CATEGORIES = [
